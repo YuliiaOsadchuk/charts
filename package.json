@@ -1,0 +1,23 @@
+{
+  "name": "charts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch scss:css",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuliiaOsadchuk/charts.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuliiaOsadchuk/charts/issues"
+  },
+  "homepage": "https://github.com/YuliiaOsadchuk/charts#readme",
+  "dependencies": {
+    "scss": "^0.2.4"
+  }
+}
