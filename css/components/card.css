@@ -1,0 +1,30 @@
+.card {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 0px 8px 24px 0px #5155c314;
+  border-radius: 16px; }
+  .card__content {
+    padding: 28px 28px 64px 28px; }
+    .card__content-tight {
+      padding-bottom: 28px; }
+    .card__content-no-spacious {
+      padding-right: 0;
+      padding-bottom: 0;
+      padding-left: 0; }
+  .card__header {
+    font-size: 20px;
+    font-weight: 700;
+    color: #222531;
+    display: flex;
+    justify-content: space-between; }
+    .card__header-spacious {
+      padding-left: 28px;
+      padding-right: 28px; }
+  .card__number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px; }
+
+/*# sourceMappingURL=card.css.map */
