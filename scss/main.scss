@@ -1,3 +1,177 @@
-@use 'abstracts/breakpoints';
-@use 'abstracts/variables';
-@use 'base/reset';
+@import 'abstracts/breakpoints';
+@import 'abstracts/variables';
+@import 'base/reset';
+@import 'components/tabs';
+@import 'components/card';
+
+.hidden {
+  display: none;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $background-default;
+  font-family: 'Inter', sans-serif;
+  padding: 16px;
+
+  @media (min-width: $breakpoint-sm) {
+    padding: 32px;
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    padding: 64px;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 1312px;
+
+  @media (min-width: $breakpoint-lg) {
+    gap: 32px;
+  }
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  @media (min-width: $breakpoint-lg) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+}
+
+.description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $text-primary;
+    text-align: center;
+    padding-bottom: 8px;
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 28px;
+      padding-bottom: 0;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 32px;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      text-align: left;
+    }
+  }
+
+  &__subtitle {
+    color: $text-hint;
+    text-align: center;
+    font-size: 10px;
+
+    @media (min-width: $breakpoint-sm) {
+      font-size: 12px;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      font-size: 16px;
+    }
+
+    @media (min-width: $breakpoint-lg) {
+      text-align: left;
+    }
+  }
+}
+
+.charts {
+  display: grid;
+  gap: 32px;
+
+  &__top {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  &__bottom {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+#kpsChartLegend {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 16px;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-top: 26px;
+
+  &__circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 4px;
+  }
+
+  &__label {
+    font-size: 12px;
+  }
+}
+
+canvas#rlqChart {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.rlqChartLegend {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 16px 24px;
+  position: absolute;
+  bottom: 0;
+  color: $text-secondary;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 5px;
+
+    &-centered {
+      align-items: center;
+    }
+
+    &-number {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    &-percentage {
+      font-size: 16px;
+    }
+
+    &-employees {
+      font-size: 14px;
+    }
+  }
+}

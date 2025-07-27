@@ -173,3 +173,102 @@ export const kpsChartConfig = {
       .join('');
   }
 };
+
+const backgroundPlugin = {
+  id: 'customCanvasBackgroundColor',
+  beforeDraw: (chart, _, options) => {
+    const { ctx, chartArea } = chart;
+    ctx.save();
+    ctx.fillStyle = options.backgroundColor || 'green';
+    ctx.fillRect(
+      chartArea.left,
+      chartArea.top,
+      chartArea.width,
+      chartArea.height
+    );
+    ctx.restore();
+  }
+};
+
+export const rlqChartConfig = {
+  canvasId: 'rlqChart',
+  type: 'line',
+  data: {
+    labels: Array.from({ length: 5 }, (_, i) => ''),
+    datasets: [
+      {
+        data: [60, 48, 54, 43, 52],
+        fill: true,
+        backgroundColor: '#e39165',
+        tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderColor: '#e39165'
+      },
+      {
+        data: [45, 52, 62, 49, 35],
+        fill: true,
+        backgroundColor: '#ebb495',
+        tension: 0.3,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        borderColor: '#ebb495'
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    layout: {
+      padding: 0
+    },
+    plugins: {
+      legend: {
+        display: false
+      },
+      customCanvasBackgroundColor: {
+        backgroundColor: '#fdf6f3'
+      }
+    },
+    scales: {
+      x: {
+        stacked: false,
+        border: {
+          display: true,
+          color: '#eff2f5',
+          width: 1
+        },
+        grid: {
+          display: false,
+          drawBorder: false,
+          drawTicks: false
+        },
+        ticks: {
+          display: false,
+          padding: 0
+        }
+      },
+      y: {
+        stacked: false,
+        min: 0,
+        max: 100,
+        ticks: {
+          padding: 0,
+          stepSize: 10,
+          display: false
+        },
+        beginAtZero: true,
+        border: {
+          display: false
+        },
+        grid: {
+          drawBorder: false,
+          display: true,
+          color: '#eff2f5',
+          drawTicks: false,
+          lineWidth: 1
+        }
+      }
+    }
+  },
+  plugins: [backgroundPlugin]
+};

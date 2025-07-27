@@ -1,7 +1,8 @@
 import { createChart } from './createChart.js';
 import {
   surveyTopicsScoresChartConfig,
-  kpsChartConfig
+  kpsChartConfig,
+  rlqChartConfig
 } from './chartConfig.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -11,5 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createChart({
     ...kpsChartConfig
+  });
+
+  createChart({
+    ...rlqChartConfig
   });
 });
