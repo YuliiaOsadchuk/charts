@@ -2,7 +2,9 @@ import { createChart } from './createChart.js';
 import {
   surveyTopicsScoresChartConfig,
   kpsChartConfig,
-  rlqChartConfig
+  rlqChartConfig,
+  kiChartConfig,
+  mziChartConfig
 } from './chartConfig.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,5 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   createChart({
     ...rlqChartConfig
+  });
+
+  createChart({
+    ...kiChartConfig
+  });
+
+  createChart({
+    ...mziChartConfig
   });
 });

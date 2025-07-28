@@ -21,7 +21,7 @@
   }
 
   @media (min-width: $breakpoint-lg) {
-    padding: 64px;
+    padding: 56px;
   }
 }
 
@@ -98,14 +98,30 @@
 
 .charts {
   display: grid;
-  gap: 32px;
+  gap: 16px;
+
+  @media (min-width: $breakpoint-md) {
+    gap: 32px;
+  }
 
   &__top {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: $breakpoint-sm) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-xl) {
+      grid-template-columns: repeat(4, 1fr);
+    }
   }
 
   &__bottom {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: $breakpoint-md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 }
 
@@ -123,13 +139,22 @@
   padding-top: 26px;
 
   &__circle {
-    width: 12px;
-    height: 12px;
+    width: 8px;
+    height: 8px;
     border-radius: 4px;
+
+    @media (min-width: $breakpoint-sm) {
+      width: 12px;
+      height: 12px;
+    }
   }
 
   &__label {
-    font-size: 12px;
+    font-size: 8px;
+
+    @media (min-width: $breakpoint-sm) {
+      font-size: 12px;
+    }
   }
 }
 
@@ -174,4 +199,99 @@ canvas#rlqChart {
       font-size: 14px;
     }
   }
+}
+
+.kiChart-wrapper {
+  width: 140px;
+  height: 160px;
+  margin: 0 auto;
+  margin-top: -50px;
+}
+
+.mziChart-wrapper {
+  width: 140px;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.emoji-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: $background-secondary;
+  z-index: 1;
+}
+
+.emoji {
+  font-size: 24px;
+  font-weight: 700;
+  filter: brightness(0.9) saturate(0.7);
+  opacity: 0.7;
+
+  &-angry {
+    position: absolute;
+    left: -4px;
+    bottom: 62px;
+  }
+
+  &-normal {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -6px;
+  }
+
+  &-glad {
+    position: absolute;
+    right: -4px;
+    bottom: 62px;
+  }
+}
+
+.score-chart-wrapper {
+  height: 152px;
+  width: 100%;
+}
+
+.listWrapper {
+  padding: 0 8px 10px 24px;
+}
+
+ol {
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0%;
+  color: $text-hint;
+  padding-left: 17px;
+  max-height: 136px;
+  overflow: overlay;
+}
+
+li {
+  width: fit-content;
+  padding: 16px 0 16px 8px;
+  border-top: 1px solid $divider;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(#d0d6e4, 0.4);
+  border-radius: 8px;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
 }

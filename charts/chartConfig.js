@@ -18,6 +18,7 @@ export const surveyTopicsScoresChartConfig = {
       legend: { position: false }
     },
     responsive: true,
+    maintainAspectRatio: false,
     layout: {
       padding: {
         left: 0
@@ -91,6 +92,7 @@ export const kpsChartConfig = {
   },
   options: {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { position: false }
     },
@@ -166,7 +168,7 @@ export const kpsChartConfig = {
         ({ backgroundColor, label, textColor }) => `
         <div class="legend">
           <div class="legend__circle" style="background: ${backgroundColor}"></div>
-          <span class="legend__label" style="color: ${textColor}; font-size: 12px;">${label}</span>
+          <span class="legend__label" style="color: ${textColor}">${label}</span>
         </div>
       `
       )
@@ -217,9 +219,14 @@ export const rlqChartConfig = {
     ]
   },
   options: {
-    responsive: true,
+    responsive: false,
     layout: {
-      padding: 0
+      padding: {
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0
+      }
     },
     plugins: {
       legend: {
@@ -271,4 +278,116 @@ export const rlqChartConfig = {
     }
   },
   plugins: [backgroundPlugin]
+};
+
+const kiChartTicksPlugin = {
+  id: 'kiChartTicksPlugin',
+  beforeDraw(chart) {
+    const { ctx, width, height } = chart;
+
+    const centerX = width / 2;
+    const centerY = height * 0.8;
+    const outerRadius = width / 2 - 5;
+
+    ctx.save();
+    ctx.translate(centerX, centerY);
+
+    const numTicks = 40;
+    const totalAngle = 240 * (Math.PI / 180);
+    const startAngle = 150 * (Math.PI / 180);
+
+    const tickLength = 8;
+    const angleStep = totalAngle / (numTicks - 1);
+    for (let i = 0; i < numTicks; i++) {
+      const angle = startAngle + i * angleStep;
+      const x1 = Math.cos(angle) * (outerRadius - tickLength);
+      const y1 = Math.sin(angle) * (outerRadius - tickLength);
+      const x2 = Math.cos(angle) * outerRadius;
+      const y2 = Math.sin(angle) * outerRadius;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.strokeStyle = '#ededed';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    const numTicksInner = 40;
+    const innerTickLength = 4;
+    const innerTickRadius = outerRadius * 0.7;
+    const innerAngleStep = totalAngle / (numTicksInner - 1);
+    for (let i = 0; i < numTicksInner; i++) {
+      const angle = startAngle + i * innerAngleStep;
+      const x1 = Math.cos(angle) * (innerTickRadius - innerTickLength);
+      const y1 = Math.sin(angle) * (innerTickRadius - innerTickLength);
+      const x2 = Math.cos(angle) * innerTickRadius;
+      const y2 = Math.sin(angle) * innerTickRadius;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.strokeStyle = '#d9d9d9';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+
+    ctx.restore();
+
+    ctx.font = '10px Inter, sans-serif';
+    ctx.fillStyle = '#616E85';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    const labelRadius = outerRadius - 18;
+
+    const startLabelAngle = (150 * Math.PI) / 180;
+    const x0 = centerX + Math.cos(startLabelAngle) * labelRadius;
+    const y0 = centerY + Math.sin(startLabelAngle) * labelRadius;
+    ctx.fillText('0', x0, y0);
+
+    const endLabelAngle = (30 * Math.PI) / 180;
+    const x100 = centerX + Math.cos(endLabelAngle) * labelRadius;
+    const y100 = centerY + Math.sin(endLabelAngle) * labelRadius;
+    ctx.fillText('100', x100, y100);
+  }
+};
+
+export const kiChartConfig = {
+  canvasId: 'kiChart',
+  type: 'doughnut',
+  data: {},
+  options: {
+    responsive: false,
+    cutout: '85%',
+    events: [],
+    plugins: {
+      tooltip: {
+        enabled: false
+      }
+    }
+  },
+  plugins: [kiChartTicksPlugin]
+};
+
+export const mziChartConfig = {
+  canvasId: 'mziChart',
+  type: 'doughnut',
+  data: {
+    datasets: [
+      {
+        data: [60, 40],
+        backgroundColor: ['#f0f2f5', 'transparent'],
+        borderWidth: 0
+      }
+    ]
+  },
+  options: {
+    responsive: false,
+    cutout: '80%',
+    rotation: 270,
+    circumference: 300,
+    plugins: {
+      tooltip: { enabled: false },
+      legend: { display: false }
+    }
+  }
 };

@@ -6,9 +6,11 @@
   background-color: $background-secondary;
   box-shadow: 0px 8px 24px 0px #5155c314;
   border-radius: 16px;
+  overflow: hidden;
+  position: relative;
 
   &__content {
-    padding: 28px 28px 64px 28px;
+    padding: 24px 28px 64px 28px;
 
     &-tight {
       padding-bottom: 28px;
@@ -27,10 +29,11 @@
     color: $text-primary;
     display: flex;
     justify-content: space-between;
+    padding-bottom: 20px;
 
     &-spacious {
-      padding-left: 28px;
-      padding-right: 28px;
+      padding-left: 24px;
+      padding-right: 24px;
     }
   }
 
